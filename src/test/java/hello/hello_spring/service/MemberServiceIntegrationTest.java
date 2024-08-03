@@ -1,21 +1,23 @@
 package hello.hello_spring.service;
 
 import hello.hello_spring.domain.Member;
-import hello.hello_spring.repository.MemoryMemberRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import hello.hello_spring.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-
-class MemberServiceTest {
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+@SpringBootTest
+@Transactional
+class MemberServiceIntegrationTest {
   //test는 한글로 적어도 무방 !
+    @Autowired
     MemberService memberService;
-    MemoryMemberRepository memberRepository;
-    @BeforeEach
+    @Autowired
+    MemberRepository memberRepository;
+/*    @BeforeEach
     public void beforeEach(){
         memberRepository = new MemoryMemberRepository();
         memberService=new MemberService(memberRepository);
@@ -23,7 +25,7 @@ class MemberServiceTest {
     @AfterEach
     public void afterEach(){
         memberRepository.clearStore();
-    }
+    }*/
     @Test
     void 회원가입() {
         //given
